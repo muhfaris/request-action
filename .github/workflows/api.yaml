@@ -20,7 +20,7 @@ jobs:
       run: npm install
 
     - name: Make API Request
-      id: api-request
+      id: apirequest
       run: ./
       with:
         url: "https://jsonplaceholder.typicode.com/todos" 
@@ -28,7 +28,7 @@ jobs:
         method: "GET"
 
     - name: Display API Response Status
-      run: echo "Response Status: ${{ steps.api-request.outputs.response-status }}"
+      run: echo "Response Status: ${{ steps.apirequest.outputs.response-status }}"
 
     - name: Display API Response Data
-      run: echo "Response Data: ${{ steps.api-request.outputs.response-data }}"
+      run: echo "Response Data: ${{ steps.apirequest.outputs.response-data }}"

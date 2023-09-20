@@ -1,0 +1,35 @@
+
+name: API Request Action
+
+on: [push]
+
+jobs:
+  api-request:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Choose an appropriate Node.js version
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Make API Request
+      id: api-request
+      run: node dist/api-request-action.js
+      env:
+        URL: ${{ secrets.API_URL }}
+        HEADERS: ${{ secrets.API_HEADERS }}
+        BODY: ${{ secrets.API_REQUEST_BODY }}
+        METHOD: ${{ secrets.API_METHOD }}
+
+    - name: Display API Response Status
+      run: echo "Response Status: ${{ steps.api-request.outputs.response-status }}"
+
+    - name: Display API Response Data
+      run: echo "Response Data: ${{ steps.api-request.outputs.response-data }}"

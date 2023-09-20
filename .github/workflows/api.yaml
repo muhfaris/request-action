@@ -1,34 +1,27 @@
-
 name: API Request Action
-
 on: [push]
-
 jobs:
   api-request:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14' # Choose an appropriate Node.js version
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Make API Request
-      id: apirequest
-      run: ./
-      with:
-        url: "https://jsonplaceholder.typicode.com/todos" 
-        headers: '{"Content-Type":"application/json"}'
-        method: "GET"
-
-    - name: Display API Response Status
-      run: echo "Response Status: ${{ steps.apirequest.outputs.response-status }}"
-
-    - name: Display API Response Data
-      run: echo "Response Data: ${{ steps.apirequest.outputs.response-data }}"
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14" # Choose an appropriate Node.js version
+      - name: Install dependencies
+        run: npm install
+      - name: Make API Request
+        id: apirequest
+        run: ./
+        with:
+          url: "https://jsonplaceholder.typicode.com/todos"
+          headers: '{"Content-Type":"application/json"}'
+          method: "GET"
+      - name: Display API Response Status
+        run: |
+          echo "Response Status: ${{ steps.apirequest.outputs.response-status }}"
+      - name: Display API Response Data
+        run: |
+          echo "Response Data: ${{ steps.apirequest.outputs.response-data }}"

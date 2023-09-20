@@ -5,23 +5,80 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "14" # Choose an appropriate Node.js version
+          node-version: "16" # Choose an appropriate Node.js version
       - name: Install dependencies
         run: npm install
-      - name: Make API Request
-        id: apirequest
+      # GET request
+      - name: Make GET API Request
+        id: get-request
         uses: ./dist
         with:
           url: "https://jsonplaceholder.typicode.com/todos"
           headers: '{"Content-Type":"application/json"}'
           method: "GET"
-      - name: Display API Response Status
+      - name: Display GET API Response Status
         run: |
-          echo "Response Status: ${{ steps.apirequest.outputs.response-status }}"
-      - name: Display API Response Data
+          echo "GET Response Status: ${{ steps.get-request.outputs.response-status }}"
+      - name: Display GET API Response Data
         run: |
-          echo "Response Data: ${{ steps.apirequest.outputs.response-data }}"
+          echo "GET Response Data: ${{ steps.get-request.outputs.response-data }}"
+      # POST request
+      - name: Make POST API Request
+        id: post-request
+        uses: ./dist
+        with:
+          url: "https://jsonplaceholder.typicode.com/todos"
+          headers: '{"Content-Type":"application/json"}'
+          body: |
+            {
+              "userId": 1,
+              "id": 201,
+              "title": "new todo",
+              "completed": false
+            }
+          method: "POST"
+      - name: Display POST API Response Status
+        run: |
+          echo "POST Response Status: ${{ steps.post-request.outputs.response-status }}"
+      - name: Display POST API Response Data
+        run: |
+          echo "POST Response Data: ${{ steps.post-request.outputs.response-data }}"
+      # PUT request
+      - name: Make PUT API Request
+        id: put-request
+        uses: ./dist
+        with:
+          url: "https://jsonplaceholder.typicode.com/todos/1"
+          headers: '{"Content-Type":"application/json"}'
+          body: |
+            {
+              "userId": 1,
+              "id": 1,
+              "title": "updated todo",
+              "completed": true
+            }
+          method: "PUT"
+      - name: Display PUT API Response Status
+        run: |
+          echo "PUT Response Status: ${{ steps.put-request.outputs.response-status }}"
+      - name: Display PUT API Response Data
+        run: |
+          echo "PUT Response Data: ${{ steps.put-request.outputs.response-data }}"
+      # DELETE request
+      - name: Make DELETE API Request
+        id: delete-request
+        uses: ./dist
+        with:
+          url: "https://jsonplaceholder.typicode.com/todos/201"
+          headers: '{"Content-Type":"application/json"}'
+          method: "DELETE"
+      - name: Display DELETE API Response Status
+        run: |
+          echo "DELETE Response Status: ${{ steps.delete-request.outputs.response-status }}"
+      - name: Display DELETE API Response Data
+        run: |
+          echo "DELETE Response Data: ${{ steps.delete-request.outputs.response-data }}"

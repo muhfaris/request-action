@@ -73,7 +73,7 @@ jobs:
         id: delete-request
         uses: ./dist
         with:
-          url: "https://jsonplaceholder.typicode.com/todos/201"
+          url: "https://jsonplaceholder.typicode.com/todos/1"
           headers: '{"Content-Type":"application/json"}'
           method: "DELETE"
       - name: Display DELETE API Response Status

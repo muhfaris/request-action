@@ -68,17 +68,3 @@ jobs:
       - name: Display PUT API Response Data
         run: |
           echo "PUT Response Data: ${{ steps.put-request.outputs.response-data }}"
-      # DELETE request
-      - name: Make DELETE API Request
-        id: delete-request
-        uses: ./dist
-        with:
-          url: "https://jsonplaceholder.typicode.com/posts/1"
-          headers: '{"Content-Type":"application/json"}'
-          method: "DELETE"
-      - name: Display DELETE API Response Status
-        run: |
-          echo "DELETE Response Status: ${{ steps.delete-request.outputs.response-status }}"
-      - name: Display DELETE API Response Data
-        run: |
-          echo "DELETE Response Data: ${{ steps.delete-request.outputs.response-data }}"

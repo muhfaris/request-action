@@ -7,7 +7,7 @@ This GitHub Action allows you to make HTTP API requests as part of your workflow
 To use this GitHub Action in your workflow, you need to define the following inputs:
 
 - `url` (Required): The URL of the API you want to make a request to.
-- `headers`: A JSON-formatted string containing the headers to include in the request.
+- `headers`: A JSON-formatted string containing the headers to include in the request (default is `application/json`).
 - `body`: The request body data (if applicable).
 - `method`: The HTTP method to use for the request (default is "POST" if not specified).
 
@@ -36,7 +36,7 @@ jobs:
 
       - name: Make API Request
         id: api-request
-        uses: your-github-username/api-request-action@v1
+        uses: muhfaris/request-action@v1
         with:
           url: ${{ secrets.API_URL }}
           headers: ${{ secrets.API_HEADERS }}

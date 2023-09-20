@@ -57,4 +57,4 @@ jobs:
 
 ## Feedback and Issues
 
-If you encounter any issues with this GitHub Action or have suggestions for improvement, please [open an issue](https://github.com/your-github-username/api-request-action/issues) on the GitHub repository for this action. We welcome your feedback and contributions.
+If you encounter any issues with this GitHub Action or have suggestions for improvement, please [open an issue](https://github.com/muhfaris/request-action/issues) on the GitHub repository for this action. We welcome your feedback and contributions.

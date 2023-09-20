@@ -25,8 +25,8 @@ async function makeApiRequest() {
     core.setOutput("response-data", JSON.stringify(response.data));
 
     core.info(`API request succeeded with status code ${response.status}`);
-  } catch (error) {
-    core.setFailed(`API request failed: ${error.message}`);
+  } catch (err: any) {
+    core.setFailed(`API request failed: ${err.message}`);
   }
 }
 

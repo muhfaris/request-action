@@ -21,12 +21,11 @@ jobs:
 
     - name: Make API Request
       id: api-request
-      run: node dist/api-request-action.js
-      env:
-        URL: ${{ secrets.API_URL }}
-        HEADERS: ${{ secrets.API_HEADERS }}
-        BODY: ${{ secrets.API_REQUEST_BODY }}
-        METHOD: ${{ secrets.API_METHOD }}
+      run: ./
+      with:
+        url: "https://jsonplaceholder.typicode.com/todos" 
+        headers: '{"Content-Type":"application/json"}'
+        method: "GET"
 
     - name: Display API Response Status
       run: echo "Response Status: ${{ steps.api-request.outputs.response-status }}"

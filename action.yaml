@@ -1,5 +1,9 @@
 name: "Request Action"
 description: "This GitHub Action allows you to make HTTP API requests as part of your workflow. You can use it to interact with external services and capture the response data for further use in your workflow. This README provides instructions on how to set up and use this action in your GitHub Actions workflow."
+author: Muh Faris
+branding:
+  icon: "zap"
+  color: "blue"
 inputs:
   url: # id of input
     description: "The URL of the API you want to make a request to"
@@ -13,8 +17,10 @@ inputs:
     description: "The HTTP method to use for the request (default is POST if not specified)."
     default: "POST"
 outputs:
-  time: # id of output
-    description: "The time we greeted you"
+  response-status: # id of output
+    description: "The HTTP status code of the API response"
+  response-data:
+    description: "The JSON-formatted response data from the API"
 runs:
   using: "node16"
   main: "dist/index.js"

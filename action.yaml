@@ -1,4 +1,4 @@
-name: "Request Action"
+name: "API Request Action"
 description: "Perform HTTP API requests in GitHub Actions to interact with external services and capture responses."
 author: Muh Faris
 branding:

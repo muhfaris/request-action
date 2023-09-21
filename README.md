@@ -1,6 +1,9 @@
 # GitHub Action API Request
 
+[![API Request Action](https://github.com/muhfaris/request-action/actions/workflows/api.yaml/badge.svg)](https://github.com/muhfaris/request-action/actions/workflows/api.yaml)
+
 This GitHub Action allows you to make HTTP API requests as part of your workflow. You can use it to interact with external services and capture the response data for further use in your workflow. This README provides instructions on how to set up and use this action in your GitHub Actions workflow.
+
 
 ## Usage
 

@@ -16,6 +16,15 @@ inputs:
   method:
     description: "The HTTP method to use for the request (default is POST if not specified)."
     default: "POST"
+  retries:
+    description: "The maximum number of retries for the request (default is 3)."
+    default: "3"
+  initialDelay:
+    description: "The initial delay in milliseconds before retrying the request (default is 1000)."
+    default: "1000"
+  maxDelay:
+    description: "The maximum delay in milliseconds between retries (default is 5000)."
+    default: "5000"
 outputs:
   response-status: # id of output
     description: "The HTTP status code of the API response"

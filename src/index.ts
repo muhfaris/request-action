@@ -1,5 +1,6 @@
 import * as core from "@actions/core";
-import axios, { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from "axios";
+import { requestWithBackoff, BackoffOptions } from "./backoff";
 
 async function makeApiRequest() {
   try {
@@ -9,6 +10,11 @@ async function makeApiRequest() {
     const requestBody = core.getInput("body");
     const method = core.getInput("method") || "POST"; // Default to "POST" if not specified
 
+    // Backoff options
+    const retries = parseInt(core.getInput("retries") || "3", 10);
+    const initialDelay = parseInt(core.getInput("initialDelay") || "1000", 10);
+    const maxDelay = parseInt(core.getInput("maxDelay") || "5000", 10);
+
     // Define the HTTP request configuration
     const config: AxiosRequestConfig = {
       url: apiUrl,
@@ -17,8 +23,14 @@ async function makeApiRequest() {
       data: requestBody,
     };
 
-    // Make the API request
-    const response = await axios(config);
+    const backoffOptions: BackoffOptions = {
+      retries,
+      initialDelay,
+      maxDelay,
+    };
+
+    // Make the API request with backoff
+    const response = await requestWithBackoff(config, backoffOptions);
 
     // Output the API response data
     core.setOutput("response-status", response.status.toString());
